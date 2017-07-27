@@ -9,6 +9,7 @@ public class BibliotecaApp {
     public static void main(String[] args) {
         BibliotecaLibrary library = new BibliotecaLibrary();
         printWelcome(library);
+        printBookList(library);
     }
 
     static void printWelcome(BibliotecaLibrary library) {
