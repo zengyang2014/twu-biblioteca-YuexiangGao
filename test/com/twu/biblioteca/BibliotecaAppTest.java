@@ -41,7 +41,6 @@ public class BibliotecaAppTest {
         for (int i = 0; i < books.size(); i++) {
             Book book = books.get(i);
             listStr.append(String.format("%d. %s\n", i + 1, book.loadDetail()));
-            assertNotEquals(book.getName(), book.loadDetail());
         }
         BibliotecaApp.printBookList(library);
         assertEquals(listStr.toString(), outputMonitor.toString());
