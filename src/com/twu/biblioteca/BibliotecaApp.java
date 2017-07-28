@@ -47,4 +47,8 @@ public class BibliotecaApp {
         mainMenu.forEach((key, value) ->
                 System.out.println(String.format("%s    %s", key, value)));
     }
+
+    static void printInvalidOptoinNotification() {
+        System.out.println("Select a valid option!");
+    }
 }

@@ -6,7 +6,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
-import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.List;
 
@@ -54,5 +53,11 @@ public class BibliotecaAppTest {
                 mainMenuBuilder.append(String.format("%s    %s\n", key, value)));
         BibliotecaApp.printMainMenu();
         assertEquals(mainMenuBuilder.toString(), outputMonitor.toString());
+    }
+
+    @Test
+    public void should_print_invalid_notification() throws Exception {
+        BibliotecaApp.printInvalidOptoinNotification();
+        assertEquals("Select a valid option!\n", outputMonitor.toString());
     }
 }
