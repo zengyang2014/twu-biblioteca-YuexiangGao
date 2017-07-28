@@ -1,15 +1,18 @@
 package com.twu.biblioteca.model;
 
 public class Book {
+    private int yearPublished;
+    private String author;
     private String name;
 
     public Book(String name) {
         this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return this.getName();
+    public Book(String name, String author, int yearPublished) {
+        this.name = name;
+        this.author = author;
+        this.yearPublished = yearPublished;
     }
 
     @Override
@@ -19,12 +22,33 @@ public class Book {
 
         Book book = (Book) o;
 
+        if (getYearPublished() != book.getYearPublished()) return false;
+        if (getAuthor() != null ? !getAuthor().equals(book.getAuthor()) : book.getAuthor() != null) return false;
         return getName() != null ? getName().equals(book.getName()) : book.getName() == null;
     }
 
     @Override
     public int hashCode() {
-        return getName() != null ? getName().hashCode() : 0;
+        int result = getYearPublished();
+        result = 31 * result + (getAuthor() != null ? getAuthor().hashCode() : 0);
+        result = 31 * result + (getName() != null ? getName().hashCode() : 0);
+        return result;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public int getYearPublished() {
+        return yearPublished;
+    }
+
+    public void setYearPublished(int yearPublished) {
+        this.yearPublished = yearPublished;
     }
 
     public String getName() {
@@ -36,6 +60,6 @@ public class Book {
     }
 
     public String loadDetail() {
-        return getName();
+        return String.format("%s, %s, %d", getName(), getAuthor(), getYearPublished());
     }
 }

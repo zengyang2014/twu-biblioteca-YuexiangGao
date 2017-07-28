@@ -19,7 +19,7 @@ public class BibliotecaApp {
     static void printBookList(BibliotecaLibrary library) {
         List<Book> books = library.getBooks();
         for (int i = 0; i < books.size(); i++) {
-            System.out.println(String.format("%d. %s", i + 1, books.get(i)));
+            System.out.println(String.format("%d. %s", i + 1, books.get(i).loadDetail()));
         }
     }
 }
