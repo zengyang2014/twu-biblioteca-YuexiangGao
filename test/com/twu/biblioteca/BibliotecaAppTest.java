@@ -46,4 +46,14 @@ public class BibliotecaAppTest {
         BibliotecaApp.printBookList(library);
         assertEquals(listStr.toString(), outputMonitor.toString());
     }
+
+    @Test
+    public void should_print_main_menu() throws Exception {
+        StringBuilder mainMenuBuilder = new StringBuilder(" Main Menu \n");
+        mainMenuBuilder.append("command | action\n");
+        BibliotecaApp.mainMenu.forEach((key, value) ->
+                mainMenuBuilder.append(String.format("%s    %s\n", key, value)));
+        BibliotecaApp.printMainMenu();
+        assertEquals(mainMenuBuilder.toString(), outputMonitor.toString());
+    }
 }
