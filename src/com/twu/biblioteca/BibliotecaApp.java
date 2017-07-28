@@ -5,6 +5,7 @@ import com.twu.biblioteca.model.Book;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 public class BibliotecaApp {
 
@@ -18,7 +19,11 @@ public class BibliotecaApp {
     public static void main(String[] args) {
         BibliotecaLibrary library = new BibliotecaLibrary();
         printWelcome(library);
+        printMainMenu();
+        Scanner scanner = new Scanner(System.in);
+        scanner.next();
         printBookList(library);
+        scanner.close();
     }
 
     static void printWelcome(BibliotecaLibrary library) {
