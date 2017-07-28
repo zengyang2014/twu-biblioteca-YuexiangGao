@@ -34,4 +34,8 @@ public class Book {
     public void setName(String name) {
         this.name = name;
     }
+
+    public String loadDetail() {
+        return getName();
+    }
 }

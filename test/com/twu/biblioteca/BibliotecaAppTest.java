@@ -40,8 +40,8 @@ public class BibliotecaAppTest {
         StringBuilder listStr = new StringBuilder();
         for (int i = 0; i < books.size(); i++) {
             Book book = books.get(i);
-            listStr.append(String.format("%d. %s\n", i + 1, book));
-            assertEquals(book.getName(), book.toString());
+            listStr.append(String.format("%d. %s\n", i + 1, book.loadDetail()));
+            assertEquals(book.getName(), book.loadDetail());
         }
         BibliotecaApp.printBookList(library);
         assertEquals(listStr.toString(), outputMonitor.toString());
