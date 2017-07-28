@@ -21,8 +21,12 @@ public class BibliotecaApp {
         printWelcome(library);
         printMainMenu();
         Scanner scanner = new Scanner(System.in);
-        scanner.next();
-        printBookList(library);
+        String option = mainMenu.get(scanner.next());
+        if (option != null) {
+            if (option.equals("List Book")) {
+                printBookList(library);
+            }
+        }
         scanner.close();
     }
 
