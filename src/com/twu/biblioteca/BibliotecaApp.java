@@ -21,11 +21,15 @@ public class BibliotecaApp {
         printWelcome(library);
         printMainMenu();
         Scanner scanner = new Scanner(System.in);
-        String option = mainMenu.get(scanner.next());
-        if (option != null) {
-            if (option.equals("List Book")) {
+        while (scanner.hasNext()) {
+            String command = mainMenu.get(scanner.next());
+            if (command == null) {
+                printInvalidOptoinNotification();
+            } else if (command.equals("List Book")) {
                 printBookList(library);
+
             }
+            printMainMenu();
         }
         scanner.close();
     }
