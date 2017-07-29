@@ -52,6 +52,7 @@ public class BibliotecaApp {
 
     static boolean parseCheckOut(BibliotecaLibrary library, String bookName) {
         Optional<Book> findBook = library.getBooks().stream().filter(book -> book.getName().equals(bookName)).findFirst();
+        state = COMMAND;
         if (findBook.isPresent()) {
             findBook.get().setCheckout(true);
             return true;
