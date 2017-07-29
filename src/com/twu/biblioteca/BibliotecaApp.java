@@ -35,7 +35,7 @@ public class BibliotecaApp {
                     printMainMenu();
                 }
             } else if (state == CHECKOUT) {
-                parseCheckOut(library, input);
+                checkOut(library, input);
                 printMainMenu();
             }
         }
@@ -61,7 +61,7 @@ public class BibliotecaApp {
         return true;
     }
 
-    static boolean parseCheckOut(BibliotecaLibrary library, String bookName) {
+    static boolean checkOut(BibliotecaLibrary library, String bookName) {
         Optional<Book> findBook = library.getBooks().stream().filter(book -> book.getName().equals(bookName)).findFirst();
         state = COMMAND;
         if (findBook.isPresent()) {

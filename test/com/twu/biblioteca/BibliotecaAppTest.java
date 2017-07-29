@@ -39,7 +39,7 @@ public class BibliotecaAppTest {
     @Test
     public void should_print_book_list_without_checked_out_book() throws Exception {
         List<Book> books = library.getBooks();
-        BibliotecaApp.parseCheckOut(library, "book1");
+        BibliotecaApp.checkOut(library, "book1");
         StringBuilder listStr = new StringBuilder();
         books = books.stream().filter(book1 -> !book1.isCheckOut()).collect(Collectors.toList());
         for (int i = 0; i < books.size(); i++) {
@@ -103,14 +103,14 @@ public class BibliotecaAppTest {
     @Test
     public void should_make_book_isCheckOut_to_be_true_when_check_out_success() throws Exception {
         Book book = library.getBooks().get(0);
-        BibliotecaApp.parseCheckOut(library, "book1");
+        BibliotecaApp.checkOut(library, "book1");
         assertTrue(book.isCheckOut());
     }
 
     @Test
     public void should_make_state_to_be_command_after_checkout_a_book() throws Exception {
         BibliotecaApp.state = CHECKOUT;
-        BibliotecaApp.parseCheckOut(library, "book1");
+        BibliotecaApp.checkOut(library, "book1");
         assertEquals(COMMAND, BibliotecaApp.state);
     }
 
@@ -125,14 +125,14 @@ public class BibliotecaAppTest {
     @Test
     public void should_print_message_when_check_out_success() throws Exception {
         BibliotecaApp.state = CHECKOUT;
-        BibliotecaApp.parseCheckOut(library, "book1");
+        BibliotecaApp.checkOut(library, "book1");
         assertEquals("Thank you! Enjoy the book\n", outputMonitor.toString());
     }
 
     @Test
     public void should_print_message_when_check_out_faild() throws Exception {
         BibliotecaApp.state = CHECKOUT;
-        BibliotecaApp.parseCheckOut(library, "not exist book");
+        BibliotecaApp.checkOut(library, "not exist book");
         assertEquals("That book is not available\n", outputMonitor.toString());
     }
 }
