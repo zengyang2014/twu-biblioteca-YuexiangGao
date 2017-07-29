@@ -135,4 +135,13 @@ public class BibliotecaAppTest {
         BibliotecaApp.checkOut(library, "not exist book");
         assertEquals("That book is not available\n", outputMonitor.toString());
     }
+
+    @Test
+    public void should_change_book_isCheckOut_to_be_false_when_return_success() throws Exception {
+        List<Book> books = library.getBooks();
+        Book book = books.get(0);
+        book.setCheckOut(true);
+        BibliotecaApp.returnBook(library, "book1");
+        assertFalse(book.isCheckOut());
+    }
 }

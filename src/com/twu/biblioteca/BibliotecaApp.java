@@ -97,4 +97,16 @@ public class BibliotecaApp {
     static void printInvalidOptoinNotification() {
         System.out.println("Select a valid option!");
     }
+
+    static boolean returnBook(BibliotecaLibrary library, String bookName) {
+        Optional<Book> findBook = library.getBooks().stream()
+                .filter(Book::isCheckOut)
+                .filter(book -> book.getName().equals(bookName))
+                .findFirst();
+        if (findBook.isPresent()) {
+            findBook.get().setCheckOut(false);
+            return true;
+        }
+        return false;
+    }
 }
