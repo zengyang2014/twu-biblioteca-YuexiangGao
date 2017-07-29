@@ -62,15 +62,14 @@ public class BibliotecaApp {
     }
 
     static boolean checkOut(BibliotecaLibrary library, String bookName) {
-        Optional<Book> findBook = library.getBooks().stream().filter(book -> book.getName().equals(bookName)).findFirst();
         state = COMMAND;
-        if (findBook.isPresent()) {
-            findBook.get().setCheckOut(true);
+        if (library.checkOutBook(bookName)) {
             System.out.println("Thank you! Enjoy the book");
             return true;
+        } else {
+            System.out.println("That book is not available");
+            return false;
         }
-        System.out.println("That book is not available");
-        return false;
     }
 
     static void printWelcome(BibliotecaLibrary library) {
