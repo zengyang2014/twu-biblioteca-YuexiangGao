@@ -128,4 +128,11 @@ public class BibliotecaAppTest {
         BibliotecaApp.parseCheckOut(library, "book1");
         assertEquals("Thank you! Enjoy the book\n", outputMonitor.toString());
     }
+
+    @Test
+    public void should_print_message_when_check_out_faild() throws Exception {
+        BibliotecaApp.state = CHECKOUT;
+        BibliotecaApp.parseCheckOut(library, "not exist book");
+        assertEquals("That book is not available\n", outputMonitor.toString());
+    }
 }

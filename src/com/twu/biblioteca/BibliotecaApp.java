@@ -69,6 +69,7 @@ public class BibliotecaApp {
             System.out.println("Thank you! Enjoy the book");
             return true;
         }
+        System.out.println("That book is not available");
         return false;
     }
 
