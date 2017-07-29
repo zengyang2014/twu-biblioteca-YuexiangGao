@@ -4,6 +4,7 @@ import com.twu.biblioteca.enums.ConsoleState;
 import com.twu.biblioteca.model.Book;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static com.twu.biblioteca.enums.ConsoleState.CHECKOUT;
 import static com.twu.biblioteca.enums.ConsoleState.COMMAND;
@@ -64,7 +65,7 @@ public class BibliotecaApp {
         Optional<Book> findBook = library.getBooks().stream().filter(book -> book.getName().equals(bookName)).findFirst();
         state = COMMAND;
         if (findBook.isPresent()) {
-            findBook.get().setCheckout(true);
+            findBook.get().setCheckOut(true);
             return true;
         }
         return false;
@@ -75,9 +76,12 @@ public class BibliotecaApp {
     }
 
     static void printBookList(BibliotecaLibrary library) {
-        List<Book> books = library.getBooks();
+        List<Book> books = library.getBooks().stream().filter(book1 -> !book1.isCheckOut()).collect(Collectors.toList());
         for (int i = 0; i < books.size(); i++) {
-            System.out.println(String.format("%d. %s", i + 1, books.get(i).loadDetail()));
+            Book book = books.get(i);
+            if (!book.isCheckOut()) {
+                System.out.println(String.format("%d. %s", i + 1, book.loadDetail()));
+            }
         }
     }
 

@@ -8,6 +8,7 @@ import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.twu.biblioteca.enums.ConsoleState.CHECKOUT;
 import static com.twu.biblioteca.enums.ConsoleState.COMMAND;
@@ -36,12 +37,16 @@ public class BibliotecaAppTest {
     }
 
     @Test
-    public void should_print_book_list() throws Exception {
+    public void should_print_book_list_without_checked_out_book() throws Exception {
         List<Book> books = library.getBooks();
+        BibliotecaApp.parseCheckOut(library, "book1");
         StringBuilder listStr = new StringBuilder();
+        books = books.stream().filter(book1 -> !book1.isCheckOut()).collect(Collectors.toList());
         for (int i = 0; i < books.size(); i++) {
             Book book = books.get(i);
-            listStr.append(String.format("%d. %s\n", i + 1, book.loadDetail()));
+            if (!book.isCheckOut()) {
+                listStr.append(String.format("%d. %s\n", i + 1, book.loadDetail()));
+            }
         }
         BibliotecaApp.printBookList(library);
         assertEquals(listStr.toString(), outputMonitor.toString());
@@ -99,7 +104,7 @@ public class BibliotecaAppTest {
     public void should_make_book_isCheckOut_to_be_true_when_check_out_success() throws Exception {
         Book book = library.getBooks().get(0);
         BibliotecaApp.parseCheckOut(library, "book1");
-        assertTrue(book.isCheckout());
+        assertTrue(book.isCheckOut());
     }
 
     @Test
