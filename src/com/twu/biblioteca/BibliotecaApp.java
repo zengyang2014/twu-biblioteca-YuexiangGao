@@ -69,7 +69,7 @@ public class BibliotecaApp {
         return true;
     }
 
-    private static void printCheckOutResult(boolean result) {
+    static void printCheckOutResult(boolean result) {
         System.out.println(result ?
                 "Thank you! Enjoy the book" :
                 "That book is not available");

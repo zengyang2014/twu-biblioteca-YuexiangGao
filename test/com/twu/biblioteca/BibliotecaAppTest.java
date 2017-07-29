@@ -138,6 +138,18 @@ public class BibliotecaAppTest {
     }
 
     @Test
+    public void should_print_successful_message_when_check_out_success() throws Exception {
+        BibliotecaApp.printCheckOutResult(true);
+        assertEquals("Thank you! Enjoy the book\n", outputMonitor.toString());
+    }
+
+    @Test
+    public void should_print_unsuccessful_message_when_check_out_book_failed() throws Exception {
+        BibliotecaApp.printCheckOutResult(false);
+        assertEquals("That book is not available\n", outputMonitor.toString());
+    }
+
+    @Test
     public void should_change_book_isCheckOut_to_be_false_when_return_success() throws Exception {
         List<Book> books = library.getBooks();
         Book book = books.get(0);
