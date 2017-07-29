@@ -30,10 +30,13 @@ public class BibliotecaApp {
             String input = scanner.nextLine();
             if (state == COMMAND) {
                 if (!parseCommand(library, input)) break;
+                if (state == COMMAND) {
+                    printMainMenu();
+                }
             } else if (state == CHECKOUT) {
-                boolean success = parseCheckOut(library, input);
+                parseCheckOut(library, input);
+                printMainMenu();
             }
-            printMainMenu();
         }
         scanner.close();
     }
