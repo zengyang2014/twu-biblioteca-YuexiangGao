@@ -21,6 +21,12 @@ public class BibliotecaLibraryTest {
     }
 
     @Test
+    public void should_check_out_failed_when_book_isCheckOut_is_true() throws Exception {
+        library.getBooks().get(0).setCheckOut(true);
+        assertFalse(library.checkOutBook("book1"));
+    }
+
+    @Test
     public void should_return_true_when_check_out_success() throws Exception {
         assertTrue(library.checkOutBook("book1"));
     }
