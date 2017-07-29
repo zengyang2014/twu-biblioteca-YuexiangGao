@@ -4,6 +4,7 @@ public class Book {
     private int yearPublished;
     private String author;
     private String name;
+    private boolean isCheckout;
 
     public Book(String name) {
         this.name = name;
@@ -23,6 +24,7 @@ public class Book {
         Book book = (Book) o;
 
         if (getYearPublished() != book.getYearPublished()) return false;
+        if (isCheckout() != book.isCheckout()) return false;
         if (getAuthor() != null ? !getAuthor().equals(book.getAuthor()) : book.getAuthor() != null) return false;
         return getName() != null ? getName().equals(book.getName()) : book.getName() == null;
     }
@@ -32,6 +34,7 @@ public class Book {
         int result = getYearPublished();
         result = 31 * result + (getAuthor() != null ? getAuthor().hashCode() : 0);
         result = 31 * result + (getName() != null ? getName().hashCode() : 0);
+        result = 31 * result + (isCheckout() ? 1 : 0);
         return result;
     }
 
@@ -61,5 +64,13 @@ public class Book {
 
     public String loadDetail() {
         return String.format("%s, %s, %d", getName(), getAuthor(), getYearPublished());
+    }
+
+    public boolean isCheckout() {
+        return isCheckout;
+    }
+
+    public void setCheckout(boolean checkout) {
+        isCheckout = checkout;
     }
 }
