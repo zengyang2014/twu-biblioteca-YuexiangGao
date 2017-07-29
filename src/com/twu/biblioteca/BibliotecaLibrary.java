@@ -40,4 +40,15 @@ public class BibliotecaLibrary {
         }
         return false;
     }
+
+    public boolean returnBook(String bookName) {
+        Optional<Book> findBook = books.stream()
+                .filter(book -> book.isCheckOut() && book.getName().equals(bookName))
+                .findFirst();
+        if (findBook.isPresent()) {
+            findBook.get().setCheckOut(false);
+            return true;
+        }
+        return false;
+    }
 }
