@@ -46,6 +46,22 @@ public class BibliotecaAppTest {
     }
 
     @Test
+    public void should_print_book_list_when_choose_list_book_option_and_state_is_command() throws Exception {
+        List<Book> books = library.getBooks();
+        StringBuilder listStr = new StringBuilder();
+        for (int i = 0; i < books.size(); i++) {
+            listStr.append(String.format("%d. %s\n", i + 1, books.get(i).loadDetail()));
+        }
+        BibliotecaApp.parseCommand(library, "1");
+        assertEquals(listStr.toString(), outputMonitor.toString());
+    }
+
+    @Test
+    public void should_return_true_when_option_is_list_book() throws Exception {
+        assertTrue(BibliotecaApp.parseCommand(library, "1"));
+    }
+
+    @Test
     public void should_print_main_menu() throws Exception {
         StringBuilder mainMenuBuilder = new StringBuilder(" Main Menu \n");
         mainMenuBuilder.append("command | action\n");
@@ -59,6 +75,22 @@ public class BibliotecaAppTest {
     public void should_print_invalid_notification() throws Exception {
         BibliotecaApp.printInvalidOptoinNotification();
         assertEquals("Select a valid option!\n", outputMonitor.toString());
+    }
+
+    @Test
+    public void should_print_invalid_notification_when_choose_an_invalid_option() throws Exception {
+        BibliotecaApp.parseCommand(null, "invalid option");
+        assertEquals("Select a valid option!\n", outputMonitor.toString());
+    }
+
+    @Test
+    public void should_return_true_when_choose_an_invalid_option() throws Exception {
+        assertTrue(BibliotecaApp.parseCommand(null, "invalid option"));
+    }
+
+    @Test
+    public void should_return_false_when_option_is_quit() throws Exception {
+        assertFalse(BibliotecaApp.parseCommand(null, "q"));
     }
 
     @Test

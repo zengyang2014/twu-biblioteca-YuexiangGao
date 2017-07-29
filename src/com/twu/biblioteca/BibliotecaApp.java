@@ -27,7 +27,7 @@ public class BibliotecaApp {
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNext()) {
             if (state == COMMAND) {
-                if (parseCommand(library, scanner.nextLine())) break;
+                if (!parseCommand(library, scanner.nextLine())) break;
             } else if (state == CHECKOUT) {
                 boolean success = parseCheckOut(library, scanner.nextLine());
             }
@@ -36,7 +36,7 @@ public class BibliotecaApp {
         scanner.close();
     }
 
-    private static boolean parseCommand(BibliotecaLibrary library, String input) {
+    static boolean parseCommand(BibliotecaLibrary library, String input) {
         String command = mainMenu.get(input);
         if (command == null) {
             printInvalidOptoinNotification();
@@ -44,10 +44,10 @@ public class BibliotecaApp {
             if (command.equals("List Book")) {
                 printBookList(library);
             } else if (command.equals("Quit")) {
-                return true;
+                return false;
             }
         }
-        return false;
+        return true;
     }
 
     static boolean parseCheckOut(BibliotecaLibrary library, String bookName) {
