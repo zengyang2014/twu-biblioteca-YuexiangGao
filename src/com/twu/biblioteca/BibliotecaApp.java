@@ -14,6 +14,7 @@ public class BibliotecaApp {
     static {
         mainMenu = new HashMap<>();
         mainMenu.put("1", "List Book");
+        mainMenu.put("q", "Quit");
     }
 
     public static void main(String[] args) {
@@ -25,9 +26,12 @@ public class BibliotecaApp {
             String command = mainMenu.get(scanner.next());
             if (command == null) {
                 printInvalidOptoinNotification();
-            } else if (command.equals("List Book")) {
-                printBookList(library);
-
+            } else {
+                if (command.equals("List Book")) {
+                    printBookList(library);
+                } else if (command.equals("Quit")) {
+                    break;
+                }
             }
             printMainMenu();
         }
