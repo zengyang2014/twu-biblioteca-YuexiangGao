@@ -1,17 +1,20 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.enums.ConsoleState;
 import com.twu.biblioteca.model.Book;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
+
+import static com.twu.biblioteca.enums.ConsoleState.CHECKOUT;
+import static com.twu.biblioteca.enums.ConsoleState.COMMAND;
 
 public class BibliotecaApp {
 
     static Map<String, String> mainMenu;
+    static ConsoleState state;
 
     static {
+        state = COMMAND;
         mainMenu = new HashMap<>();
         mainMenu.put("1", "List Book");
         mainMenu.put("q", "Quit");
@@ -23,19 +26,37 @@ public class BibliotecaApp {
         printMainMenu();
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNext()) {
-            String command = mainMenu.get(scanner.next());
-            if (command == null) {
-                printInvalidOptoinNotification();
-            } else {
-                if (command.equals("List Book")) {
-                    printBookList(library);
-                } else if (command.equals("Quit")) {
-                    break;
-                }
+            if (state == COMMAND) {
+                if (parseCommand(library, scanner.nextLine())) break;
+            } else if (state == CHECKOUT) {
+                boolean success = parseCheckOut(library, scanner.nextLine());
             }
             printMainMenu();
         }
         scanner.close();
+    }
+
+    private static boolean parseCommand(BibliotecaLibrary library, String input) {
+        String command = mainMenu.get(input);
+        if (command == null) {
+            printInvalidOptoinNotification();
+        } else {
+            if (command.equals("List Book")) {
+                printBookList(library);
+            } else if (command.equals("Quit")) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    static boolean parseCheckOut(BibliotecaLibrary library, String bookName) {
+        Optional<Book> findBook = library.getBooks().stream().filter(book -> book.getName().equals(bookName)).findFirst();
+        if (findBook.isPresent()) {
+            findBook.get().setCheckout(true);
+            return true;
+        }
+        return false;
     }
 
     static void printWelcome(BibliotecaLibrary library) {
