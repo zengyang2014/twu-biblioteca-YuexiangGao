@@ -17,6 +17,7 @@ public class BibliotecaApp {
         state = COMMAND;
         mainMenu = new HashMap<>();
         mainMenu.put("1", "List Book");
+        mainMenu.put("co", "Check Out");
         mainMenu.put("q", "Quit");
     }
 
@@ -26,10 +27,11 @@ public class BibliotecaApp {
         printMainMenu();
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNext()) {
+            String input = scanner.nextLine();
             if (state == COMMAND) {
-                if (!parseCommand(library, scanner.nextLine())) break;
+                if (!parseCommand(library, input)) break;
             } else if (state == CHECKOUT) {
-                boolean success = parseCheckOut(library, scanner.nextLine());
+                boolean success = parseCheckOut(library, input);
             }
             printMainMenu();
         }
@@ -37,14 +39,19 @@ public class BibliotecaApp {
     }
 
     static boolean parseCommand(BibliotecaLibrary library, String input) {
-        String command = mainMenu.get(input);
-        if (command == null) {
+        String option = mainMenu.get(input);
+        if (option == null) {
             printInvalidOptoinNotification();
         } else {
-            if (command.equals("List Book")) {
-                printBookList(library);
-            } else if (command.equals("Quit")) {
-                return false;
+            switch (option) {
+                case "List Book":
+                    printBookList(library);
+                    break;
+                case "Check Out":
+                    state = CHECKOUT;
+                    break;
+                case "Quit":
+                    return false;
             }
         }
         return true;
