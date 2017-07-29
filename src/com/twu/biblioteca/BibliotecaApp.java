@@ -35,7 +35,7 @@ public class BibliotecaApp {
                     printMainMenu();
                 }
             } else if (state == CHECKOUT) {
-                checkOut(library, input);
+                printCheckOutResult(checkOut(library, input));
                 printMainMenu();
             }
         }
@@ -61,15 +61,15 @@ public class BibliotecaApp {
         return true;
     }
 
+    private static void printCheckOutResult(boolean result) {
+        System.out.println(result ?
+                "Thank you! Enjoy the book" :
+                "That book is not available");
+    }
+
     static boolean checkOut(BibliotecaLibrary library, String bookName) {
         state = COMMAND;
-        if (library.checkOutBook(bookName)) {
-            System.out.println("Thank you! Enjoy the book");
-            return true;
-        } else {
-            System.out.println("That book is not available");
-            return false;
-        }
+        return library.checkOutBook(bookName);
     }
 
     static void printWelcome(BibliotecaLibrary library) {
