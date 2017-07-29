@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 
 import static com.twu.biblioteca.enums.ConsoleState.CHECKOUT;
 import static com.twu.biblioteca.enums.ConsoleState.COMMAND;
+import static com.twu.biblioteca.enums.ConsoleState.RETURN_BOOK;
 import static org.junit.Assert.*;
 
 public class BibliotecaAppTest {
@@ -143,5 +144,14 @@ public class BibliotecaAppTest {
         book.setCheckOut(true);
         BibliotecaApp.returnBook(library, "book1");
         assertFalse(book.isCheckOut());
+    }
+
+    @Test
+    public void should_change_state_to_command_after_return_book() throws Exception {
+        BibliotecaApp.state = RETURN_BOOK;
+        String bookName = "book1";
+        library.checkOutBook(bookName);
+        BibliotecaApp.returnBook(library, bookName);
+        assertEquals(COMMAND, BibliotecaApp.state);
     }
 }
