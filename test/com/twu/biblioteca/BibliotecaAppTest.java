@@ -154,4 +154,11 @@ public class BibliotecaAppTest {
         BibliotecaApp.returnBook(library, bookName);
         assertEquals(COMMAND, BibliotecaApp.state);
     }
+
+    @Test
+    public void should_change_state_to_returnBook_when_choose_return_book_option() throws Exception {
+        BibliotecaApp.state = COMMAND;
+        BibliotecaApp.parseCommand(null, "rb");
+        assertEquals(RETURN_BOOK, BibliotecaApp.state);
+    }
 }

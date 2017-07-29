@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import static com.twu.biblioteca.enums.ConsoleState.CHECKOUT;
 import static com.twu.biblioteca.enums.ConsoleState.COMMAND;
+import static com.twu.biblioteca.enums.ConsoleState.RETURN_BOOK;
 
 public class BibliotecaApp {
 
@@ -19,6 +20,7 @@ public class BibliotecaApp {
         mainMenu = new HashMap<>();
         mainMenu.put("1", "List Book");
         mainMenu.put("co", "Check Out");
+        mainMenu.put("rb", "Return Book");
         mainMenu.put("q", "Quit");
     }
 
@@ -53,6 +55,9 @@ public class BibliotecaApp {
                     break;
                 case "Check Out":
                     state = CHECKOUT;
+                    break;
+                case "Return Book":
+                    state = RETURN_BOOK;
                     break;
                 case "Quit":
                     return false;
