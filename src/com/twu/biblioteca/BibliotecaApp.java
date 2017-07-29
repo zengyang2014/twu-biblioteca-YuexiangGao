@@ -40,7 +40,7 @@ public class BibliotecaApp {
                 printCheckOutResult(checkOut(library, input));
                 printMainMenu();
             } else if (state == RETURN_BOOK) {
-                returnBook(library, input);
+                printReturnBookResult(returnBook(library, input));
                 printMainMenu();
             }
         }
