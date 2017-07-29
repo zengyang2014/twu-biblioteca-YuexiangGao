@@ -66,6 +66,7 @@ public class BibliotecaApp {
         state = COMMAND;
         if (findBook.isPresent()) {
             findBook.get().setCheckOut(true);
+            System.out.println("Thank you! Enjoy the book");
             return true;
         }
         return false;

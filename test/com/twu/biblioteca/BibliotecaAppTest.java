@@ -121,4 +121,11 @@ public class BibliotecaAppTest {
         BibliotecaApp.parseCommand(library, checkout);
         assertEquals(CHECKOUT, BibliotecaApp.state);
     }
+
+    @Test
+    public void should_print_message_when_check_out_success() throws Exception {
+        BibliotecaApp.state = CHECKOUT;
+        BibliotecaApp.parseCheckOut(library, "book1");
+        assertEquals("Thank you! Enjoy the book\n", outputMonitor.toString());
+    }
 }
