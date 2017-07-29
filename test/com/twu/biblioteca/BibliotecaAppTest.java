@@ -131,7 +131,7 @@ public class BibliotecaAppTest {
     }
 
     @Test
-    public void shuold_return_false_without_any_print_when_check_out_failed() throws Exception {
+    public void should_return_false_without_any_print_when_check_out_failed() throws Exception {
         BibliotecaApp.state = CHECKOUT;
         assertFalse(BibliotecaApp.checkOut(library, "not exist book"));
         assertEquals("", outputMonitor.toString());
@@ -160,5 +160,31 @@ public class BibliotecaAppTest {
         BibliotecaApp.state = COMMAND;
         BibliotecaApp.parseCommand(null, "rb");
         assertEquals(RETURN_BOOK, BibliotecaApp.state);
+    }
+
+    @Test
+    public void should_return_true_without_any_print_when_return_book_success() throws Exception {
+        String bookName = "book1";
+        library.checkOutBook(bookName);
+        assertTrue(BibliotecaApp.returnBook(library, bookName));
+        assertEquals("", outputMonitor.toString());
+    }
+
+    @Test
+    public void should_return_false_without_any_print_when_return_book_failed() throws Exception {
+        assertFalse(BibliotecaApp.returnBook(library, "book1"));
+        assertEquals("", outputMonitor.toString());
+    }
+
+    @Test
+    public void should_print_successful_message_when_return_book_success() throws Exception {
+        BibliotecaApp.printReturnBookResult(true);
+        assertEquals("Thank you for returning the book.\n", outputMonitor.toString());
+    }
+
+    @Test
+    public void should_print_unsuccessful_message_when_return_book_failed() throws Exception {
+        BibliotecaApp.printReturnBookResult(false);
+        assertEquals("That is not a valid book to return\n", outputMonitor.toString());
     }
 }

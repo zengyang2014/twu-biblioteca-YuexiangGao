@@ -109,4 +109,10 @@ public class BibliotecaApp {
         state = COMMAND;
         return library.returnBook(bookName);
     }
+
+    static void printReturnBookResult(boolean result) {
+        System.out.println(result ?
+                "Thank you for returning the book." :
+                "That is not a valid book to return");
+    }
 }
