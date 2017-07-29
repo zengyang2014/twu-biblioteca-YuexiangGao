@@ -40,6 +40,7 @@ public class BibliotecaAppTest {
     public void should_print_book_list_without_checked_out_book() throws Exception {
         List<Book> books = library.getBooks();
         BibliotecaApp.checkOut(library, "book1");
+        outputMonitor.reset();
         StringBuilder listStr = new StringBuilder();
         books = books.stream().filter(book1 -> !book1.isCheckOut()).collect(Collectors.toList());
         for (int i = 0; i < books.size(); i++) {
