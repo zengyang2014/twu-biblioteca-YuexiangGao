@@ -1,6 +1,7 @@
 package com.twu.biblioteca;
 
 import com.twu.biblioteca.model.Book;
+import com.twu.biblioteca.model.Movie;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -198,5 +199,16 @@ public class BibliotecaAppTest {
     public void should_print_unsuccessful_message_when_return_book_failed() throws Exception {
         BibliotecaApp.printReturnBookResult(false);
         assertEquals("That is not a valid book to return\n", outputMonitor.toString());
+    }
+
+    @Test
+    public void should_print_movie_list_without_checked_out_movies() throws Exception {
+        List<Movie> movies = library.getMovies();
+        StringBuilder listStr = new StringBuilder();
+        for (int i = 0; i < movies.size(); i++) {
+            listStr.append(String.format("%d. %s\n", i + 1, movies.get(i).loadDetail()));
+        }
+        BibliotecaApp.parseCommand(library, "lm");
+        assertEquals(listStr.toString(), outputMonitor.toString());
     }
 }

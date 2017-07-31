@@ -2,6 +2,7 @@ package com.twu.biblioteca;
 
 import com.twu.biblioteca.enums.ConsoleState;
 import com.twu.biblioteca.model.Book;
+import com.twu.biblioteca.model.Movie;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -21,6 +22,7 @@ public class BibliotecaApp {
         mainMenu.put("1", "List Book");
         mainMenu.put("co", "Check Out");
         mainMenu.put("rb", "Return Book");
+        mainMenu.put("lm", "List Movie");
         mainMenu.put("q", "Quit");
     }
 
@@ -62,11 +64,22 @@ public class BibliotecaApp {
                 case "Return Book":
                     state = RETURN_BOOK;
                     break;
+                case "List Movie":
+                    printMovieList(library);
+                    break;
                 case "Quit":
                     return false;
             }
         }
         return true;
+    }
+
+    private static void printMovieList(BibliotecaLibrary library) {
+        List<Movie> movies = library.getMovies();
+        movies.stream().filter(movie -> !movie.isCheckOut()).forEach(movie -> {
+            int index = movies.indexOf(movie);
+            System.out.println(String.format("%d. %s", index + 1, movie.loadDetail()));
+        });
     }
 
     static void printCheckOutResult(boolean result) {
