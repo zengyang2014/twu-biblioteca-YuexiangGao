@@ -20,9 +20,10 @@ public class BibliotecaApp {
         state = COMMAND;
         mainMenu = new HashMap<>();
         mainMenu.put("1", "List Book");
-        mainMenu.put("co", "Check Out");
+        mainMenu.put("cob", "Check Out Book");
         mainMenu.put("rb", "Return Book");
         mainMenu.put("lm", "List Movie");
+        mainMenu.put("com", "Check Out Movie");
         mainMenu.put("q", "Quit");
     }
 
@@ -58,7 +59,7 @@ public class BibliotecaApp {
                 case "List Book":
                     printBookList(library);
                     break;
-                case "Check Out":
+                case "Check Out Book":
                     state = CHECK_OUT_BOOK;
                     break;
                 case "Return Book":

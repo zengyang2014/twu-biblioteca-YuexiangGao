@@ -119,7 +119,7 @@ public class BibliotecaAppTest {
     @Test
     public void should_change_state_to_be_checkout_when_choose_checkout_option() throws Exception {
         BibliotecaApp.state = COMMAND;
-        String checkout = "co";
+        String checkout = "cob";
         BibliotecaApp.parseCommand(library, checkout);
         assertEquals(CHECK_OUT_BOOK, BibliotecaApp.state);
     }
