@@ -11,7 +11,7 @@ public class Movie {
         this.name = name;
         this.year = year;
         this.director = director;
-        this.rating = rating;
+        this.setRating(rating);
     }
 
     @Override
@@ -65,6 +65,6 @@ public class Movie {
     }
 
     public void setRating(int rating) {
-        this.rating = rating;
+        this.rating = rating <= 10 && rating >= 1 ? rating : 0;
     }
 }
