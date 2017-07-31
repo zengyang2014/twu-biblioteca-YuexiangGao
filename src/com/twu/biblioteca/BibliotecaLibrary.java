@@ -6,9 +6,6 @@ import com.twu.biblioteca.model.Movie;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Stream;
-
-import static java.util.stream.Collectors.toList;
 
 public class BibliotecaLibrary {
 
@@ -16,14 +13,16 @@ public class BibliotecaLibrary {
     private List<Movie> movies;
 
     public BibliotecaLibrary() {
-        books = buildPreExistingList();
+        books = buildPreExistingBooks();
         movies = buildPreExistingMovies();
     }
 
-    private List<Book> buildPreExistingList() {
-        return Stream.of("book1", "book2")
-                .map(Book::new)
-                .collect(toList());
+    private List<Book> buildPreExistingBooks() {
+        List<Book> books = new ArrayList<>();
+        books.add(new Book("book1", "author1", 1998));
+        books.add(new Book("book2", "author2", 2016));
+        books.add(new Book("book3", "author3", 2014));
+        return books;
     }
 
     private List<Movie> buildPreExistingMovies() {
