@@ -11,9 +11,7 @@ import java.io.PrintStream;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.twu.biblioteca.enums.ConsoleState.CHECK_OUT_BOOK;
-import static com.twu.biblioteca.enums.ConsoleState.COMMAND;
-import static com.twu.biblioteca.enums.ConsoleState.RETURN_BOOK;
+import static com.twu.biblioteca.enums.ConsoleState.*;
 import static org.junit.Assert.*;
 
 public class BibliotecaAppTest {
@@ -210,5 +208,12 @@ public class BibliotecaAppTest {
         }
         BibliotecaApp.parseCommand(library, "lm");
         assertEquals(listStr.toString(), outputMonitor.toString());
+    }
+
+    @Test
+    public void should_change_state_to_CHECK_OUT_MOVIE_when_choose_check_out_movie() throws Exception {
+        BibliotecaApp.state = COMMAND;
+        BibliotecaApp.parseCommand(library, "com");
+        assertEquals(CHECK_OUT_MOVIE, BibliotecaApp.state);
     }
 }

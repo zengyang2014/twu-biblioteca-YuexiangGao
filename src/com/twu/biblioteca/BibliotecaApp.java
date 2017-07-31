@@ -7,9 +7,7 @@ import com.twu.biblioteca.model.Movie;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static com.twu.biblioteca.enums.ConsoleState.CHECK_OUT_BOOK;
-import static com.twu.biblioteca.enums.ConsoleState.COMMAND;
-import static com.twu.biblioteca.enums.ConsoleState.RETURN_BOOK;
+import static com.twu.biblioteca.enums.ConsoleState.*;
 
 public class BibliotecaApp {
 
@@ -67,6 +65,9 @@ public class BibliotecaApp {
                     break;
                 case "List Movie":
                     printMovieList(library);
+                    break;
+                case "Check Out Movie":
+                    state = CHECK_OUT_MOVIE;
                     break;
                 case "Quit":
                     return false;
