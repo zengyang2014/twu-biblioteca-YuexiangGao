@@ -38,7 +38,7 @@ public class BibliotecaApp {
                     printMainMenu();
                 }
             } else if (state == CHECK_OUT_BOOK) {
-                printCheckOutResult(checkOut(library, input));
+                printCheckOutResult(checkOutBook(library, input));
                 printMainMenu();
             } else if (state == RETURN_BOOK) {
                 printReturnBookResult(returnBook(library, input));
@@ -90,7 +90,7 @@ public class BibliotecaApp {
                 "That book is not available");
     }
 
-    static boolean checkOut(BibliotecaLibrary library, String bookName) {
+    static boolean checkOutBook(BibliotecaLibrary library, String bookName) {
         state = COMMAND;
         return library.checkOutBook(bookName);
     }
