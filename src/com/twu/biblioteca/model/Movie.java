@@ -6,6 +6,7 @@ public class Movie {
     private int year;
     private String director;
     private int rating;
+    private boolean isCheckOut;
 
     public Movie(String name, int year, String director, int rating) {
         this.name = name;
@@ -23,6 +24,7 @@ public class Movie {
 
         if (getYear() != movie.getYear()) return false;
         if (getRating() != movie.getRating()) return false;
+        if (isCheckOut() != movie.isCheckOut()) return false;
         if (getName() != null ? !getName().equals(movie.getName()) : movie.getName() != null) return false;
         return getDirector() != null ? getDirector().equals(movie.getDirector()) : movie.getDirector() == null;
     }
@@ -33,6 +35,7 @@ public class Movie {
         result = 31 * result + getYear();
         result = 31 * result + (getDirector() != null ? getDirector().hashCode() : 0);
         result = 31 * result + getRating();
+        result = 31 * result + (isCheckOut() ? 1 : 0);
         return result;
     }
 
@@ -66,5 +69,13 @@ public class Movie {
 
     public void setRating(int rating) {
         this.rating = rating <= 10 && rating >= 1 ? rating : 0;
+    }
+
+    public boolean isCheckOut() {
+        return isCheckOut;
+    }
+
+    public void setCheckOut(boolean checkOut) {
+        isCheckOut = checkOut;
     }
 }
