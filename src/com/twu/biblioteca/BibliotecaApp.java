@@ -7,7 +7,7 @@ import com.twu.biblioteca.model.Movie;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static com.twu.biblioteca.enums.ConsoleState.CHECKOUT;
+import static com.twu.biblioteca.enums.ConsoleState.CHECK_OUT_BOOK;
 import static com.twu.biblioteca.enums.ConsoleState.COMMAND;
 import static com.twu.biblioteca.enums.ConsoleState.RETURN_BOOK;
 
@@ -38,7 +38,7 @@ public class BibliotecaApp {
                 if (state == COMMAND) {
                     printMainMenu();
                 }
-            } else if (state == CHECKOUT) {
+            } else if (state == CHECK_OUT_BOOK) {
                 printCheckOutResult(checkOut(library, input));
                 printMainMenu();
             } else if (state == RETURN_BOOK) {
@@ -59,7 +59,7 @@ public class BibliotecaApp {
                     printBookList(library);
                     break;
                 case "Check Out":
-                    state = CHECKOUT;
+                    state = CHECK_OUT_BOOK;
                     break;
                 case "Return Book":
                     state = RETURN_BOOK;

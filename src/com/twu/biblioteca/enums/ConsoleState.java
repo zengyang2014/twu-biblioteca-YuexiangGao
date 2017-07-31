@@ -1,5 +1,5 @@
 package com.twu.biblioteca.enums;
 
 public enum ConsoleState {
-    COMMAND, CHECKOUT, RETURN_BOOK
+    COMMAND, CHECK_OUT_BOOK, RETURN_BOOK
 }

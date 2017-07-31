@@ -11,7 +11,7 @@ import java.io.PrintStream;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.twu.biblioteca.enums.ConsoleState.CHECKOUT;
+import static com.twu.biblioteca.enums.ConsoleState.CHECK_OUT_BOOK;
 import static com.twu.biblioteca.enums.ConsoleState.COMMAND;
 import static com.twu.biblioteca.enums.ConsoleState.RETURN_BOOK;
 import static org.junit.Assert.*;
@@ -111,7 +111,7 @@ public class BibliotecaAppTest {
 
     @Test
     public void should_make_state_to_be_command_after_checkout_a_book() throws Exception {
-        BibliotecaApp.state = CHECKOUT;
+        BibliotecaApp.state = CHECK_OUT_BOOK;
         BibliotecaApp.checkOut(library, "book1");
         assertEquals(COMMAND, BibliotecaApp.state);
     }
@@ -121,19 +121,19 @@ public class BibliotecaAppTest {
         BibliotecaApp.state = COMMAND;
         String checkout = "co";
         BibliotecaApp.parseCommand(library, checkout);
-        assertEquals(CHECKOUT, BibliotecaApp.state);
+        assertEquals(CHECK_OUT_BOOK, BibliotecaApp.state);
     }
 
     @Test
     public void should_return_true_without_any_print_when_check_out_success() throws Exception {
-        BibliotecaApp.state = CHECKOUT;
+        BibliotecaApp.state = CHECK_OUT_BOOK;
         assertTrue(BibliotecaApp.checkOut(library, "book1"));
         assertEquals("", outputMonitor.toString());
     }
 
     @Test
     public void should_return_false_without_any_print_when_check_out_failed() throws Exception {
-        BibliotecaApp.state = CHECKOUT;
+        BibliotecaApp.state = CHECK_OUT_BOOK;
         assertFalse(BibliotecaApp.checkOut(library, "not exist book"));
         assertEquals("", outputMonitor.toString());
     }
