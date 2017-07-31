@@ -33,4 +33,15 @@ public class MovieTest {
         movie.setRating(30);
         assertEquals(0, movie.getRating());
     }
+
+    @Test
+    public void should_load_detail_with_name_year_director_and_rating() throws Exception {
+        String name = "name";
+        int year = 2008;
+        String director = "me";
+        int rating = 1;
+        Movie movie = new Movie(name, year, director, rating);
+        String expectDetail = String.format("%s, %d, %s, %d", name, year, director, rating);
+        assertEquals(expectDetail, movie.loadDetail());
+    }
 }

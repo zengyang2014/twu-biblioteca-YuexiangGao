@@ -78,4 +78,8 @@ public class Movie {
     public void setCheckOut(boolean checkOut) {
         isCheckOut = checkOut;
     }
+
+    public String loadDetail() {
+        return String.format("%s, %d, %s, %d", name, year, director, rating);
+    }
 }
