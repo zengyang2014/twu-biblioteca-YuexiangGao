@@ -62,4 +62,20 @@ public class BibliotecaLibrary {
         }
         return false;
     }
+
+    public boolean checkOutMovie(String movieName) {
+        Optional<Movie> findMovie = movies.stream()
+                .filter(movie -> !movie.isCheckOut() && movie.getName().equals(movieName))
+                .findFirst();
+        findMovie.ifPresent(Movie::checkOut);
+        return findMovie.isPresent();
+    }
+
+    public List<Movie> getMovies() {
+        return movies;
+    }
+
+    public void setMovies(List<Movie> movies) {
+        this.movies = movies;
+    }
 }
