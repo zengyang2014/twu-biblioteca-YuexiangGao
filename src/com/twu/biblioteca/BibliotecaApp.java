@@ -43,6 +43,9 @@ public class BibliotecaApp {
             } else if (state == RETURN_BOOK) {
                 printReturnBookResult(returnBook(library, input));
                 printMainMenu();
+            } else if (state == CHECK_OUT_MOVIE) {
+                printCheckOutMovieResult(checkOutMovie(library, input));
+                printMainMenu();
             }
         }
         scanner.close();
