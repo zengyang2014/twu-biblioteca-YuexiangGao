@@ -135,4 +135,10 @@ public class BibliotecaApp {
         state = COMMAND;
         return library.checkOutMovie(movieName);
     }
+
+    static void printCheckOutMovieResult(boolean result) {
+        System.out.println(result ?
+                "Thank you! Enjoy the movie!" :
+                "That movie is not available!");
+    }
 }

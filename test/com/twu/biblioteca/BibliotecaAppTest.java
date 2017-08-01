@@ -247,4 +247,16 @@ public class BibliotecaAppTest {
         BibliotecaApp.checkOutMovie(library, "movieName");
         assertEquals(COMMAND, BibliotecaApp.state);
     }
+
+    @Test
+    public void should_print_successful_message_when_check_out_movie_result_is_true() throws Exception {
+        BibliotecaApp.printCheckOutMovieResult(true);
+        assertEquals("Thank you! Enjoy the movie!\n", outputMonitor.toString());
+    }
+
+    @Test
+    public void should_print_unsuccessful_message_when_check_out_movie_result_is_false() throws Exception {
+        BibliotecaApp.printCheckOutMovieResult(false);
+        assertEquals("That movie is not available!\n", outputMonitor.toString());
+    }
 }
