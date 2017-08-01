@@ -78,4 +78,12 @@ public class BibliotecaLibrary {
     public void setMovies(List<Movie> movies) {
         this.movies = movies;
     }
+
+    public boolean returnMovie(String movieName) {
+        Optional<Movie> findMovie = movies.stream()
+                .filter(movie -> movie.isCheckOut() && movie.getName().equals(movieName))
+                .findFirst();
+        findMovie.ifPresent(movie -> movie.setCheckOut(false));
+        return findMovie.isPresent();
+    }
 }
