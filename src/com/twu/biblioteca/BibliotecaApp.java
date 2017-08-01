@@ -130,4 +130,9 @@ public class BibliotecaApp {
                 "Thank you for returning the book." :
                 "That is not a valid book to return");
     }
+
+    static boolean checkOutMovie(BibliotecaLibrary library, String movieName) {
+        state = COMMAND;
+        return library.checkOutMovie(movieName);
+    }
 }
