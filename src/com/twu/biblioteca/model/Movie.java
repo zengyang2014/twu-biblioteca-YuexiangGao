@@ -42,7 +42,7 @@ public class Movie {
     public String getName() {
         return name;
     }
-
+// you can remove the useless getter and setter
     public void setName(String name) {
         this.name = name;
     }
