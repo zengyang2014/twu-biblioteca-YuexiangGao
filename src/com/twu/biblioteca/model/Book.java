@@ -41,7 +41,7 @@ public class Book {
     public String getAuthor() {
         return author;
     }
-
+// you can delete useless getter and setter
     public void setAuthor(String author) {
         this.author = author;
     }
