@@ -260,4 +260,11 @@ public class BibliotecaAppTest {
         BibliotecaApp.printCheckOutMovieResult(false);
         assertEquals("That movie is not available!\n", outputMonitor.toString());
     }
+
+    @Test
+    public void should_change_state_to_RETURN_MOVIE_when_choose_option_return_movie() throws Exception {
+        BibliotecaApp.state = COMMAND;
+        BibliotecaApp.parseCommand(library, "rm");
+        assertEquals(RETURN_MOVIE, BibliotecaApp.state);
+    }
 }

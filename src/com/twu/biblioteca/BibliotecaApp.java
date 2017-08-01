@@ -22,6 +22,7 @@ public class BibliotecaApp {
         mainMenu.put("rb", "Return Book");
         mainMenu.put("lm", "List Movie");
         mainMenu.put("com", "Check Out Movie");
+        mainMenu.put("rm", "Return Movie");
         mainMenu.put("q", "Quit");
     }
 
@@ -71,6 +72,9 @@ public class BibliotecaApp {
                     break;
                 case "Check Out Movie":
                     state = CHECK_OUT_MOVIE;
+                    break;
+                case "Return Movie":
+                    state = RETURN_MOVIE;
                     break;
                 case "Quit":
                     return false;
