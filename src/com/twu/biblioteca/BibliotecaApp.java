@@ -148,4 +148,10 @@ public class BibliotecaApp {
                 "Thank you! Enjoy the movie!" :
                 "That movie is not available!");
     }
+
+    static boolean returnMovie(BibliotecaLibrary library, String movieName) {
+        state = COMMAND;
+        return library.returnMovie(movieName);
+
+    }
 }
