@@ -81,10 +81,10 @@ public class BibliotecaApp {
 
     private static void printMovieList(BibliotecaLibrary library) {
         List<Movie> movies = library.getMovies();
-        movies.stream().filter(movie -> !movie.isCheckOut()).forEach(movie -> {
-            int index = movies.indexOf(movie);
-            System.out.println(String.format("%d. %s", index + 1, movie.loadDetail()));
-        });
+        movies.stream()
+                .filter(movie -> !movie.isCheckOut())
+                .map(Movie::loadDetail)
+                .forEach(System.out::println);
     }
 
     static void printCheckOutResult(boolean result) {

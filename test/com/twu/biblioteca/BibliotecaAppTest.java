@@ -203,9 +203,10 @@ public class BibliotecaAppTest {
     public void should_print_movie_list_without_checked_out_movies() throws Exception {
         List<Movie> movies = library.getMovies();
         StringBuilder listStr = new StringBuilder();
-        for (int i = 0; i < movies.size(); i++) {
-            listStr.append(String.format("%d. %s\n", i + 1, movies.get(i).loadDetail()));
-        }
+        movies.stream()
+                .filter(movie -> !movie.isCheckOut())
+                .map(Movie::loadDetail)
+                .forEach(detail -> listStr.append(detail).append("\n"));
         BibliotecaApp.parseCommand(library, "lm");
         assertEquals(listStr.toString(), outputMonitor.toString());
     }
