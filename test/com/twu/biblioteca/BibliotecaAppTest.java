@@ -286,4 +286,16 @@ public class BibliotecaAppTest {
         BibliotecaApp.returnMovie(library, "movieName");
         assertEquals(COMMAND, BibliotecaApp.state);
     }
+
+    @Test
+    public void should_print_successful_message_when_return_movie_success() throws Exception {
+        BibliotecaApp.printReturnMovieResult(true);
+        assertEquals("Thank you for returning the movie.\n", outputMonitor.toString());
+    }
+
+    @Test
+    public void should_print_unsuccessful_message_when_return_movie_failed() throws Exception {
+        BibliotecaApp.printReturnMovieResult(false);
+        assertEquals("That is not a valid movie to return.\n", outputMonitor.toString());
+    }
 }

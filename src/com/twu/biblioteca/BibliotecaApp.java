@@ -154,4 +154,10 @@ public class BibliotecaApp {
         return library.returnMovie(movieName);
 
     }
+
+    static void printReturnMovieResult(boolean result) {
+        System.out.println(result ?
+                "Thank you for returning the movie." :
+                "That is not a valid movie to return.");
+    }
 }
